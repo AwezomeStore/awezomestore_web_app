@@ -1,13 +1,13 @@
 <template>
   <div class="col-md-6 col-lg-4 col-xl-3 product-card-container">
-  <b-card title="Title" img-src="https://placekitten.com/g/300/450" img-alt="Image" img-top
+  <b-card :title=product.title img-src="https://placekitten.com/g/300/450" img-alt="Image" img-top
     class="product-card">
     <b-card-text>
       This is a wider card with supporting text below as a natural lead-in to additional content.
       This content is a little bit longer.
     </b-card-text>
     <div class="rating-product">
-      <b-form-rating v-model="value" readonly></b-form-rating>
+      <b-form-rating v-model="product.rating" readonly></b-form-rating>
       <p class="rating-info">{{ product.rating.toFixed(1) }}</p>
     </div>
   </b-card>

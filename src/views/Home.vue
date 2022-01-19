@@ -4,12 +4,7 @@
     Component of sections
     </div>
     <div class="col-md-10 list-target-products">
-      <ProductTarget :product=product></ProductTarget>
-      <ProductTarget :product=product></ProductTarget>
-      <ProductTarget :product=product></ProductTarget>
-      <ProductTarget :product=product></ProductTarget>
-      <ProductTarget :product=product></ProductTarget>
-      <ProductTarget :product=product></ProductTarget>
+      <ProductTarget v-for="(info, index) in product" :key="index" :product=info ></ProductTarget>
     </div>
   </div>
 </template>
@@ -25,7 +20,22 @@ export default {
   },
   data () {
     return {
-      product: {rating: 4.235}
+      product:[
+        {rating: 4.235,
+        title: "michi1"},
+        {rating: 2.235,
+        title: "michi2"},
+        {rating: 3.235,
+        title: "michi3"},
+        {rating: 5.235,
+        title: "michi4"},
+        {rating: 2.235,
+        title: "michi5"},
+        {rating: 1.235,
+        title: "michi6"},
+        {rating: 0.235,
+        title: "michi7"}
+      ]
     }
   }
 }
