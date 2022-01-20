@@ -1,7 +1,6 @@
 <template>
   <div class="home-content">
     <div class="col-md-2">
-      <button @click="superTest">MUAJAJJ</button>
     Component of sections
     </div>
     <div class="col-md-10 list-target-products">
@@ -22,36 +21,22 @@ export default {
   },
   data () {
     return {
-      products:[
-        {rating: 4.235,
-        title: "michi1"},
-        {rating: 2.235,
-        title: "michi2"},
-        {rating: 3.235,
-        title: "michi3"},
-        {rating: 5.235,
-        title: "michi4"},
-        {rating: 2.235,
-        title: "michi5"},
-        {rating: 1.235,
-        title: "michi6"},
-        {rating: 0.235,
-        title: "michi7"}
-      ]
+      products:[]
     }
   },
-
-  methods: {
-    async superTest () {
-      const res = await axios.post('http://localhost:4010/api', {
-        query: `{
-          getUser {
-            id
-          }
-        }`
-      })
-      console.log(res.data.data);
-    },
+  created: function() {
+    axios.post('http://localhost:4010/api', {
+      query: `{
+        getProduct {
+          name
+          description
+          stock
+        }
+      }`
+    })
+    .then( response => {
+      this.products = response.data.data.getProduct;
+    })
   }
 }
 </script>
