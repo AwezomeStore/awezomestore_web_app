@@ -1,16 +1,18 @@
 <template>
   <div class="home-content">
     <div class="col-md-2">
+      <button @click="superTest">MUAJAJJ</button>
     Component of sections
     </div>
     <div class="col-md-10 list-target-products">
-      <ProductTarget v-for="(info, index) in product" :key="index" :product=info ></ProductTarget>
+      <ProductTarget v-for="(info, index) in products" :key="index" :product=info ></ProductTarget>
     </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
+import axios from 'axios'
 import ProductTarget from '@/components/ProductTarget.vue'
 
 export default {
@@ -20,7 +22,7 @@ export default {
   },
   data () {
     return {
-      product:[
+      products:[
         {rating: 4.235,
         title: "michi1"},
         {rating: 2.235,
@@ -37,6 +39,19 @@ export default {
         title: "michi7"}
       ]
     }
+  },
+
+  methods: {
+    async superTest () {
+      const res = await axios.post('http://localhost:4010/api', {
+        query: `{
+          getUser {
+            id
+          }
+        }`
+      })
+      console.log(res.data.data);
+    },
   }
 }
 </script>
