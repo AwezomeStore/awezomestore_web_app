@@ -14,6 +14,13 @@
 import axios from 'axios'
 import ProductTarget from '@/components/ProductTarget.vue'
 
+const axiosInstance = axios.create({
+  headers: {
+    "Access-Control-Allow-Origin": "*"
+  }
+});
+
+
 export default {
   name: 'Home',
   components: {
@@ -25,16 +32,19 @@ export default {
     }
   },
   created: function() {
-    axios.post('http://localhost:4010/api', {
+    axiosInstance.post('http://localhost:4010/api', {
       query: `{
         getProduct {
           name
           description
           stock
+          range
+          img_info
         }
       }`
     })
     .then( response => {
+      console.log(response.data.data.getProduct);
       this.products = response.data.data.getProduct;
     })
   }

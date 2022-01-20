@@ -1,13 +1,13 @@
 <template>
   <div class="col-md-6 col-lg-4 col-xl-3 product-card-container">
-  <b-card :title=product.name img-src="https://placekitten.com/g/300/450" img-alt="Image" img-top
+  <b-card :title=product.name :img-src=product.img_info img-top
     class="product-card">
     <b-card-text>
       {{ product.description }}
     </b-card-text>
     <div class="rating-product">
-      <b-form-rating v-model="rating" readonly></b-form-rating>
-      <p class="rating-info">{{ rating.toFixed(1) }}</p>
+      <b-form-rating v-model="product.range" readonly></b-form-rating>
+      <p class="rating-info">{{ product.range.toFixed(1) }}</p>
     </div>
   </b-card>
   </div>
@@ -21,7 +21,6 @@ export default {
   },
   data() {
     return {
-      rating: 4.123
     }
   },
 }
