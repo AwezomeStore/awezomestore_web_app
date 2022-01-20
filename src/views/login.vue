@@ -24,8 +24,9 @@
           </b-row>
           <h1></h1>
           <b-row sm="2">
-            <b-col sm ="12">
-              <button @click="login"  class="btn btn-dark btn-lg btn-block">Ingresar</button>
+            <b-col >
+              <b-button class="btn-dark btn-lg " @click="login1()">Ingresar</b-button>
+              <b-button class="btn-dark btn-lg " @click="ir('/Registrar')">Registrar</b-button>
             </b-col>
           </b-row>
         </b-col>
@@ -34,6 +35,7 @@
   </div>
 </template>
 <script>
+import axios from 'axios'
 export default {
   data() {
     return {
@@ -47,11 +49,44 @@ export default {
     }
   },
   methods: {
-    login(){
-      this.showlogin = true
+    
+    async login1 () {
       
-      this.showlogin = false
+      const res = await axios.post('http://localhost:4010/api', {
+        query: `mutation {
+                  signIn(data: {
+                  username: "${this.username}",
+                  password: "${this.password}"
+                  }) {
+                    id
+                    userId
+                    token
+                    roles{
+                      id
+                      roleName
+                    }
+                  }
+                }`
+      }).then(res =>{
+          console.log(res);
+          alert('Login Exitoso')
+        }).catch(error => {
+          if (!error.response) {
+            // network error
+            alert('Error de conexion')
+          }
+          if (error.response.status === 500) {
+            alert('No se encentra el usuario')
+          } else {
+            alert('Error en la aplicación')
+          }
+        this.showLogin = false
 
+        })
+      console.log(res);
+    },
+    ir (a){
+        this.$router.push(a)
     },
   }
 }
