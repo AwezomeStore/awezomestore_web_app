@@ -1,7 +1,8 @@
 <template>
   <div class="home-content">
     <div class="col-md-2">
-    Component of sections
+    <h3>Categorías</h3><br>
+    Figuras decorativas
     </div>
     <div class="col-md-10 list-target-products">
       <ProductTarget v-for="(info, index) in products" :key="index" :product=info ></ProductTarget>
@@ -32,7 +33,7 @@ export default {
     }
   },
   created: function() {
-    axiosInstance.post('http://localhost:4010/api', {
+    axiosInstance.post('https://7ed8-2800-484-5181-98e0-c0c6-3d11-1df-9179.ngrok.io', {
       query: `{
         getProduct {
           name

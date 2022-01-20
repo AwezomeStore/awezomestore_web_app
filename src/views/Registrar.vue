@@ -58,7 +58,7 @@
                 :aria-describedby="ariaDescribedby"
               ></b-form-checkbox-group>
             </b-form-group>
-            <b-button class="btn-dark btn-lg " @click="Registrar()">Registrar</b-button>
+            <b-button class="btn-lg btn-signup" @click="Registrar()">Registrar</b-button>
           </b-form-group>
         </b-card>
       </div>
@@ -93,8 +93,7 @@ export default {
       }
     },
     async Registrar () {
-      
-      const res = await axios.post('http://localhost:4010/api', {
+      const res = await axios.post('https://7ed8-2800-484-5181-98e0-c0c6-3d11-1df-9179.ngrok.io', {
         query: `mutation {
                   signUp(data: {
                     firstName: "${this.firstName}",
@@ -133,10 +132,21 @@ export default {
 .registro{
   background: var(--gray-2);
   padding: 1rem 0.5rem;
-  height: 600px;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 3rem;
+  padding: 5rem 1rem 10rem 1rem;
+}
+
+.btn-signup{
+  margin: .5rem 0rem;
+  background-color: var(--orange-1);
+  border-color: var(--orange-1);
+}
+
+.card .card-body {
+  background-color: var(--gray-3);
 }
 
 </style>

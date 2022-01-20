@@ -24,9 +24,9 @@
           </b-row>
           <h1></h1>
           <b-row sm="2">
-            <b-col >
-              <b-button class="btn-dark btn-lg " @click="login1()">Ingresar</b-button>
-              <b-button class="btn-dark btn-lg " @click="ir('/Registrar')">Registrar</b-button>
+            <b-col class="login-btns">
+              <b-button class="btn-lg" @click="login1()">Ingresar</b-button>
+              <b-button class="btn-lg" @click="ir('/Registrar')">Registrar</b-button>
             </b-col>
           </b-row>
         </b-col>
@@ -52,7 +52,7 @@ export default {
     
     async login1 () {
       
-      const res = await axios.post('http://localhost:4010/api', {
+      const res = await axios.post('https://7ed8-2800-484-5181-98e0-c0c6-3d11-1df-9179.ngrok.io', {
         query: `mutation {
                   signIn(data: {
                   username: "${this.username}",
@@ -69,7 +69,8 @@ export default {
                 }`
       }).then(res =>{
           console.log(res);
-          alert('Login Exitoso')
+          alert('Login Exitoso');
+          this.ir('/');
         }).catch(error => {
           if (!error.response) {
             // network error
@@ -96,10 +97,21 @@ export default {
 .login{
   background: var(--gray-2);
   padding: 1rem 0.5rem;
-  height: 600px;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 10rem 1rem 30rem 1rem;
+}
+
+.login-btns {
+  display: flex;
+  justify-content: center;
+}
+
+.login-btns .btn-lg {
+  margin: 0 .5rem;
+  background-color: var(--orange-1);
+  border-color: var(--orange-1);
 }
 
 </style>
