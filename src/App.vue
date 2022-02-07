@@ -6,6 +6,7 @@
           <img src="./assets/logoNegroNaranja.png" @click="ir('/')" id="Logo" width="15%" style="background: var(--orange-1);">
           <b-nav-item class="link-session" @click="ir('/Registrar')">Crear cuenta</b-nav-item>
           <b-nav-item class="link-session" @click="ir('/login')">Iniciar Sesión</b-nav-item>
+          <b-nav-item class="link-session" @click="ir('/payment')">Pago</b-nav-item>
         </b-navbar-nav>
         <div class="search-product-container">
           <b-form-input size="sm" class="mr-sm-2 product-search" placeholder="Search"></b-form-input>
